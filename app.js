@@ -28,6 +28,18 @@ client.connect().then(async () => {
     channel.sendMessage("!mp addref _Railgun_");
     channel.sendMessage("!mp mods freemod");
     channel.sendMessage("!mp password");
+    
+    function informaton() {
+        console.log("timer");
+        if (lobby.playing == false){
+            channel.sendMessage("Bot Dev Discord: Railgun#5065 | If u have questions or feature requests");
+            lobby.updateSettings();
+        }
+       
+      
+    }
+    var notif = setInterval(informaton, 120000);
+
     lobby.on("matchFinished", () => {
         randomBeatmap();
         lobby.setMap(beatmapid);
@@ -36,7 +48,8 @@ client.connect().then(async () => {
         randomBeatmap();
         lobby.setMap(beatmapid);
     });
-
+    
+ 
 
     lobby.on("allPlayersReady", () => {
         channel.sendMessage("Everyone is ready, starting in 5sec.");
@@ -64,7 +77,7 @@ client.connect().then(async () => {
         lobby.setMap(beatmapid);
         channel.sendMessage("Changed Beatmap");
     });
-
+  
     client.on("PM", (message) => {
         if (message.self) return;
         console.log(`${message.user.ircUsername}: ${message.message}`)
